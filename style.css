@@ -158,7 +158,7 @@ header {
     max-width: 1000px;
     row-gap: 100px;
     column-gap: 300px;
-    margin: auto; /* center the grid and add spacing */
+    margin-left:200px; /* center the grid and add spacing */
 }
 
 .skills-range {
