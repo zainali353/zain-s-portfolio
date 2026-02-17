@@ -1,17 +1,4 @@
-const text = "Welcome to Zain's Portfolio";
-const heading = document.querySelector(".h1");
 
-let index = 0;
-
-function typeEffect() {
-    if (index < text.length) {
-        heading.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeEffect, 80); // typing speed
-    }
-}
-
-typeEffect();
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".navbar ul li a");
 

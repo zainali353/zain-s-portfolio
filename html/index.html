@@ -105,7 +105,7 @@ I enjoy tackling challenges, learning new technologies and creating practical so
                 <input type="range" id="CN" name="CN" min="0" max="100" value="50">
                 <span>50%</span><br>
                     <label for="OS">Operating Systems</label>
-                <input type="range" id="OS" name="OS" min="0" max="100" value="650">
+                <input type="range" id="OS" name="OS" min="0" max="100" value="65">
                 <span>65%</span><br>
                  <label for="DSA">Data Structures</label>
                 <input type="range" id="DSA" name="DSA" min="0" max="100" value="50">
@@ -171,87 +171,101 @@ I enjoy tackling challenges, learning new technologies and creating practical so
     </section>
     <h2>Contacts</h2>
 <section id="contact" class="contact-sec">
-    <p>
-        Feel free to reach out to me for any inquiries, collaborations
-        or just to say hello! You can connect with me below.
-    </p>
+  <p>Feel free to reach out to me...</p>
 
-    <div class="social-container">
-        <div class="social-card">
-            <h3>LinkedIn</h3>
-            <p>Connect with me professionally.</p>
-            <a href="https://www.linkedin.com/in/zain-ali-53819a309" target="_blank">Visit Profile</a>
-        </div>
-
-        <div class="social-card">
-            <h3>GitHub</h3>
-            <p>Check out my projects & code.</p>
-            <a href="https://github.com/zainali353" target="_blank">View GitHub</a>
-        </div>
+  <div class="social-container">
+    <div class="social-card">
+      <h3>LinkedIn</h3>
+      <p>Connect professionally</p>
+      <a href="https://www.linkedin.com/in/zain-ali-53819a309" target="_blank">Visit Profile</a>
     </div>
+
+    <div class="social-card">
+      <h3>GitHub</h3>
+      <p>Check my projects</p>
+      <a href="https://github.com/zainali353" target="_blank">View GitHub</a>
+    </div>
+  </div>
+
+  <form id="contact-form" action="">
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" name="from_name" required>
+    </div>
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" name="from_email" required>
+    </div>
+    <div class="input-group">
+      <label>Message</label>
+      <textarea name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
 </section>
 
-    <form id="contact-form">
-    <div class="input-group">
-        <label>Full Name</label>
-        <input type="text" name="from_name" required>
-    </div>
-
-    <div class="input-group">
-        <label>Email</label>
-        <input type="email" name="from_email" required>
-    </div>
-
-    <div class="input-group">
-        <label>Message</label>
-        <textarea name="message" rows="5" required></textarea>
-    </div>
-
-    <button type="submit">Send Message</button>
-</form>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-     <script src="/javascript/script.js"></script>
-     <script>
+<script>
+    const text = "Welcome to Zain's Portfolio";
+const heading = document.querySelector(".h1");
+
+let index = 0;
+
+function typeEffect() {
+    if (index < text.length) {
+        heading.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80); // typing speed
+    }
+}
+
+typeEffect();
+document.addEventListener("DOMContentLoaded", function() {
     emailjs.init("6w2GKkfhktLh3lCZl");
 
-    document.getElementById("contact-form")
-        .addEventListener("submit", function(event) {
-            event.preventDefault();
+    const form = document.getElementById("contact-form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            emailjs.sendForm("service_qajbmcm", 
-                             "template_nqm7xe8", 
-                             this)
-                .then(function() {
-                    alert("Message Sent Successfully!");
-                }, function(error) {
-                    alert("Failed to send message. Try again.");
-                });
+        emailjs.sendForm(
+            "service_qajbmcm",
+            "template_nqm7xe8",
+            this
+        ).then(function() {
+            alert("Message Sent Successfully!");
+            form.reset(); // clear form
+        }, function(error) {
+            alert("Failed to send message. Try again.");
+            console.log(error);
         });
-const sections = document.querySelectorAll("section[id], div[id]");
-const navLinks = document.querySelectorAll("nav a");
-
-window.addEventListener("scroll", () => {
-    let current = "";
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-        }
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
+    // Scroll spy
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
     });
 });
-
 </script>
+
 
 </body>
 </html>
